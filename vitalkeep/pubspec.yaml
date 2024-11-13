@@ -30,9 +30,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  geolocator: ^9.0.2
+  geolocator: ^13.0.1
   flutter_blue: ^0.8.0
   flutter_background_service: ^5.0.10
+  http: 1.2.2
 
 
 
