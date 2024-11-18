@@ -1,3 +1,16 @@
+// build.gradle a nivel de proyecto (raíz)
+
+buildscript {
+    repositories {
+        google()  // Repositorio de Google para las herramientas Android
+        mavenCentral()  // Repositorio de Maven Central para dependencias
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:8.0.0' // Clase base para Gradle Android
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.0'  // Plugin de Kotlin
+    }
+}
+
 allprojects {
     repositories {
         google()
@@ -5,14 +18,15 @@ allprojects {
     }
 }
 
-rootProject.buildDir = "../build"
+rootProject.buildDir = "../build"  // Define el directorio de compilación para todos los módulos
 subprojects {
-    project.buildDir = "${rootProject.buildDir}/${project.name}"
-}
-subprojects {
-    project.evaluationDependsOn(":app")
+    project.buildDir = "${rootProject.buildDir}/${project.name}"  // Define directorios de compilación por subproyecto
 }
 
-tasks.register("clean", Delete) {
-    delete rootProject.buildDir
+subprojects {
+    project.evaluationDependsOn(":app")  // Asegura que el módulo app se evalúe primero
+}
+
+tasks.register("clean", Delete) {  // Registra una tarea clean para eliminar el directorio de compilación
+    delete rootProject.buildDir  // Elimina el directorio de compilación cuando se ejecute la tarea clean
 }

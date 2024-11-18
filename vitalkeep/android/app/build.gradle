@@ -1,44 +1,41 @@
 plugins {
-    id "com.android.application"
-    id "kotlin-android"
-    // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
-    id "dev.flutter.flutter-gradle-plugin"
+    id 'com.android.application'
+    id 'kotlin-android'
 }
 
 android {
-    namespace = "com.example.vitalkeep"
-    compileSdk = flutter.compileSdkVersion
-    ndkVersion = flutter.ndkVersion
-
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
-
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8
-    }
+    compileSdkVersion 33  // Versión de la SDK de compilación de Android
 
     defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId = "com.example.vitalkeep"
-        // You can update the following values to match your application needs.
-        // For more information, see: https://flutter.dev/to/review-gradle-config.
-        minSdk = flutter.minSdkVersion
-        targetSdk = flutter.targetSdkVersion
-        versionCode = flutter.versionCode
-        versionName = flutter.versionName
+        applicationId "com.example.vitalkeep"  // ID del paquete de la app
+        minSdkVersion 21  // Versión mínima soportada de Android
+        targetSdkVersion 33  // Versión objetivo de Android
+        versionCode 1  // Código de versión de la aplicación (puedes aumentar este número en futuras versiones)
+        versionName "1.0.0"  // Nombre de versión de la aplicación
     }
 
     buildTypes {
         release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig = signingConfigs.debug
+            minifyEnabled false  // Desactiva la minimización de código
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    // Define el namespace en base al package declarado en el manifiesto
+    namespace "com.example.vitalkeep"
 }
 
-flutter {
-    source = "../.."
+dependencies {
+    // Reemplazar con la versión más reciente de AppCompat
+    implementation 'androidx.appcompat:appcompat:1.6.1'  // Soporte para compatibilidad con versiones anteriores de Android
+    
+    // Reemplazar con la versión más reciente de Material Components
+    implementation 'com.google.android.material:material:1.9.0'  // Material Design Components
+
+    // Reemplazar con la versión más reciente de Kotlin
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.0'  // Dependencia de Kotlin
+
+    // Dependencia de Flutter (asegúrate de tener esta línea solo si tu proyecto está integrado con Flutter)
+    implementation "io.flutter:flutter_embedding:2.0.0"  // Dependencia de Flutter para integrarse con Android
 }
+
