@@ -15,8 +15,7 @@ void _initializeBackgroundService() async {
     androidConfiguration: AndroidConfiguration(
       onStart:
           onStart, // La función onStart debe aceptar un parámetro ServiceInstance
-      isForegroundMode:
-          true, // Ejecutar el servicio en primer plano (esto muestra una notificación)
+      isForegroundMode: true, // Ejecutar el servicio en primer plano
       initialNotificationContent: 'Preparing', // Notificación inicial
       initialNotificationTitle: 'Background Service',
     ),
@@ -28,32 +27,35 @@ void _initializeBackgroundService() async {
     ),
   );
 
-  // Iniciar el servicio en segundo plano usando el método correcto
+  // Iniciar el servicio en segundo plano
   service.invoke('startService');
 }
 
 // Función que se ejecuta cuando el servicio comienza
 void onStart(ServiceInstance service) {
   // Aquí puedes interactuar con el servicio en segundo plano
-  // Usar el método 'onDataReceived' para escuchar los datos enviados al servicio
+
+  // Enviar datos al servicio
+  service.sendData({"message": "Service started"});
+
+  // Escuchar los datos recibidos desde el servicio
   service.onDataReceived.listen((event) {
-    //print("Data received in background: $event");
+    print("Data received in background: $event");
   });
 
   // Si necesitas hacer algo al iniciar el servicio, lo puedes colocar aquí
-  //print("Background service started.");
+  print("Background service started.");
 }
 
 extension on ServiceInstance {
   get onDataReceived => null;
+
+  void sendData(Map<String, String> map) {}
 }
 
 // Función que se ejecuta cuando la app se pone en segundo plano (solo en iOS)
-// Esta función ahora recibe un ServiceInstance como parámetro, como se requiere
 Future<bool> onBackground(ServiceInstance service) async {
-  //print("App moved to background on iOS");
-
-  // Puedes interactuar con el servicio en segundo plano aquí también si lo necesitas
+  print("App moved to background on iOS");
   return Future.value(true); // Debe devolver un Future<bool>
 }
 

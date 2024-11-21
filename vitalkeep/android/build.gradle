@@ -1,32 +1,40 @@
-// build.gradle a nivel de proyecto (raíz)
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+}
 
-buildscript {
-    repositories {
-        google()  // Repositorio de Google para las herramientas Android
-        mavenCentral()  // Repositorio de Maven Central para dependencias
+android {
+    compileSdkVersion 33  // Versión de la SDK de compilación de Android
+
+    defaultConfig {
+        applicationId "com.example.vitalkeep"  // ID del paquete de la app
+        minSdkVersion 21  // Versión mínima soportada de Android
+        targetSdkVersion 33  // Versión objetivo de Android
+        versionCode 1  // Código de versión de la aplicación (puedes aumentar este número en futuras versiones)
+        versionName "1.0.0"  // Nombre de versión de la aplicación
     }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:8.0.0' // Clase base para Gradle Android
-        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.0'  // Plugin de Kotlin
+
+    buildTypes {
+        release {
+            minifyEnabled false  // Desactiva la minimización de código
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
     }
+
+    // Define el namespace en base al package declarado en el manifiesto
+    namespace "com.example.vitalkeep"
 }
 
-allprojects {
-    repositories {
-        google()
-        mavenCentral()
-    }
-}
+dependencies {
+    // Reemplazar con la versión más reciente de AppCompat
+    implementation 'androidx.appcompat:appcompat:1.6.1'  // Soporte para compatibilidad con versiones anteriores de Android
+    
+    // Reemplazar con la versión más reciente de Material Components
+    implementation 'com.google.android.material:material:1.9.0'  // Material Design Components
 
-rootProject.buildDir = "../build"  // Define el directorio de compilación para todos los módulos
-subprojects {
-    project.buildDir = "${rootProject.buildDir}/${project.name}"  // Define directorios de compilación por subproyecto
-}
+    // Reemplazar con la versión más reciente de Kotlin
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.0'  // Dependencia de Kotlin
 
-subprojects {
-    project.evaluationDependsOn(":app")  // Asegura que el módulo app se evalúe primero
-}
-
-tasks.register("clean", Delete) {  // Registra una tarea clean para eliminar el directorio de compilación
-    delete rootProject.buildDir  // Elimina el directorio de compilación cuando se ejecute la tarea clean
+    // Dependencia de Flutter (asegúrate de tener esta línea solo si tu proyecto está integrado con Flutter)
+    implementation "io.flutter:flutter_embedding:2.0.0"  // Dependencia de Flutter para integrarse con Android
 }
