@@ -40,11 +40,11 @@ void onStart(ServiceInstance service) {
 
   // Escuchar los datos recibidos desde el servicio
   service.onDataReceived.listen((event) {
-    print("Data received in background: $event");
+    //  print("Data received in background: $event");
   });
 
   // Si necesitas hacer algo al iniciar el servicio, lo puedes colocar aquí
-  print("Background service started.");
+  //print("Background service started.");
 }
 
 extension on ServiceInstance {
@@ -55,7 +55,7 @@ extension on ServiceInstance {
 
 // Función que se ejecuta cuando la app se pone en segundo plano (solo en iOS)
 Future<bool> onBackground(ServiceInstance service) async {
-  print("App moved to background on iOS");
+  // print("App moved to background on iOS");
   return Future.value(true); // Debe devolver un Future<bool>
 }
 

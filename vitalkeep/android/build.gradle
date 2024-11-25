@@ -12,6 +12,7 @@ android {
         targetSdkVersion 33  // Versión objetivo de Android
         versionCode 1  // Código de versión de la aplicación (puedes aumentar este número en futuras versiones)
         versionName "1.0.0"  // Nombre de versión de la aplicación
+        namespace "com.example.vitalkeep"  // Define el namespace de la aplicación
     }
 
     buildTypes {
@@ -21,8 +22,7 @@ android {
         }
     }
 
-    // Define el namespace en base al package declarado en el manifiesto
-    namespace "com.example.vitalkeep"
+    // Otras configuraciones necesarias
 }
 
 dependencies {
