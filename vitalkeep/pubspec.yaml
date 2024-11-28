@@ -1,12 +1,12 @@
 name: vitalkeep
 description: "A new Flutter project."
 
-publish_to: 'none' # Elimina esta línea si deseas publicar en pub.dev
+publish_to: 'none' # Elimina esta línea para  publicar en pub.dev
 
 version: 1.0.0+1
 
 environment:
-  sdk: ">=3.5.4 <4.0.0"  # Añadí el rango de versiones, por si quieres más seguridad
+  sdk: ">=3.5.4 <4.0.0"  # Rango de versiones
 
 dependencies:
   flutter:

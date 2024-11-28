@@ -33,7 +33,7 @@ void _initializeBackgroundService() async {
 
 // Función que se ejecuta cuando el servicio comienza
 void onStart(ServiceInstance service) {
-  // Aquí puedes interactuar con el servicio en segundo plano
+  // Aquí puede interactuar con el servicio en segundo plano
 
   // Enviar datos al servicio
   service.sendData({"message": "Service started"});
@@ -43,7 +43,6 @@ void onStart(ServiceInstance service) {
     //  print("Data received in background: $event");
   });
 
-  // Si necesitas hacer algo al iniciar el servicio, lo puedes colocar aquí
   //print("Background service started.");
 }
 
